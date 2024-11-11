@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Router Documentation</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            box-sizing: border-box;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding-top: 30px;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            transition: 0.3s;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 250px;
+            padding: 30px;
+            width: calc(100% - 250px);
+            transition: margin-left 0.3s;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .route-example {
+            background-color: #ffffff;
+            border-left: 5px solid #007bff;
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        code {
+            font-family: monospace;
+            background-color: #e8e8e8;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h3 {
+            color: #007bff;
+            margin-bottom: 8px;
+        }
+
+        /* Active section highlight in navigation */
+        nav a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive for smaller screens */
+        @media screen and (max-width: 768px) {
+            nav {
+                width: 200px;
+                padding-top: 20px;
+            }
+
+            main {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav>
+        <h2 style="color: white; text-align: center; padding-bottom: 20px;">Router Docs</h2>
+        <a href="#overview" class="active">Overview</a>
+        <a href="#route-methods">Route Methods</a>
+        <a href="#dynamic-parameters">Dynamic Parameters</a>
+        <a href="#example-routes">Example Routes</a>
+        <a href="#conclusion">Conclusion</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Router Documentation</h1>
+        <p>This document explains how to define and handle various HTTP methods for routing in your PHP application. It
+            also provides examples of dynamic parameters and proper route structure for better organization and
+            maintainability.</p>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>The <code>$router</code> object allows you to define routes for your web application. Routes map HTTP
+                methods (GET, POST, PUT, DELETE, PATCH) to specific controllers and actions.</p>
+        </section>
+
+        <!-- Route Methods Section -->
+        <section id="route-methods">
+            <h2>Route Methods</h2>
+            <p>The following methods are used to handle different types of HTTP requests. Each method corresponds to a
+                specific action on the web server.</p>
+
+            <div class="route-example">
+                <h3>GET Route</h3>
+                <p>Use <code>$router->get</code> to handle GET requests, which are used to retrieve data or view pages.
+                </p>
+                <pre><code>$router->get('/post/{id}', 'Post::view');</code></pre>
+            </div>
+
+            <div class="route-example">
+                <h3>POST Route</h3>
+                <p>Use <code>$router->post</code> for handling POST requests, which are typically used for submitting
+                    data.</p>
+                <pre><code>$router->post('/contact', 'Contact::submit');</code></pre>
+            </div>
+
+            <div class="route-example">
+                <h3>PUT Route</h3>
+                <p>Use <code>$router->put</code> for PUT requests, which replace the entire resource with the new data.
+                </p>
+                <pre><code>$router->put('/post/{id}', 'Post::update');</code></pre>
+            </div>
+
+            <div class="route-example">
+                <h3>DELETE Route</h3>
+                <p>Use <code>$router->delete</code> to handle DELETE requests, which remove a specific resource.</p>
+                <pre><code>$router->delete('/post/{id}', 'Post::delete');</code></pre>
+            </div>
+
+            <div class="route-example">
+                <h3>PATCH Route</h3>
+                <p>Use <code>$router->patch</code> for PATCH requests, which are used for partial updates to a resource.
+                </p>
+                <pre><code>$router->patch('/post/{id}/title', 'Post::updateTitle');</code></pre>
+            </div>
+        </section>
+
+        <!-- Dynamic Parameters Section -->
+        <section id="dynamic-parameters">
+            <h2>Dynamic Parameters</h2>
+            <p>Dynamic parameters allow you to capture values from the URL and pass them to the controller method.</p>
+            <div class="route-example">
+                <pre><code>$router->get('/post/{id}/{slug}', 'Post::view');</code></pre>
+                <p>In this example, <code>{id}</code> and <code>{slug}</code> are dynamic parameters that will be passed
+                    to the <code>Post::view</code> method.</p>
+            </div>
+        </section>
+
+        <!-- Example Routes Section -->
+        <section id="example-routes">
+            <h2>Example Routes</h2>
+            <p>Here are some example routes that demonstrate the common HTTP methods in action:</p>
+            <div class="route-example">
+                <pre><code>
+$router->get('/', 'Home::index');          // Home page
+$router->get('/about', 'Home::about');      // About page
+$router->get('/send', 'EmailTest::sendContactEmail'); // Send contact email
+$router->post('/contact', 'Contact::submit'); // Submit contact form
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>By defining clear and logical routes, your application becomes easier to maintain and expand. This
+                documentation outlines the basic routes structure and provides an overview of dynamic parameters to help
+                you better organize your routes.</p>
+        </section>
+    </main>
+
+    <script>
+        // Add highlighting to active navigation links
+        const links = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+
+        // Function to handle the active link logic
+        function handleActiveLink() {
+            let currentSection = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100; // offset for scroll position
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                // Check if the section is in the viewport
+                if (pageYOffset >= sectionTop && pageYOffset <= sectionBottom) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            // Remove active class from all links
+            links.forEach(link => {
+                link.classList.remove('active');
+                // Add active class to the link matching the current section
+                if (link.getAttribute('href').includes(currentSection)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Handle the scroll event
+        window.addEventListener('scroll', handleActiveLink);
+
+        // Trigger handleActiveLink once on page load to ensure the right link is active
+        document.addEventListener("DOMContentLoaded", handleActiveLink);
+    </script>
+
+</body>
+
+</html>
