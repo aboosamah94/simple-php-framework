@@ -27,8 +27,16 @@ class Router
     // Convert a route with parameters to a regex pattern
     private function convertToRegex(string $route): string
     {
-        return '/^' . preg_replace('/\{([^\/]+)\}/', '(?P<\1>[^/]+)', str_replace('/', '\/', $route)) . '$/';
+        $routePattern = preg_replace_callback('/\{([^\/\?]+)(\?)?\}/', function ($matches) {
+            if (isset($matches[2]) && $matches[2] === '?') {
+                return '(?P<' . $matches[1] . '>[^/]+)?';
+            }
+            return '(?P<' . $matches[1] . '>[^/]+)';
+        }, $route);
+        $routePattern = str_replace('/', '\/', $routePattern);
+        return '/^' . $routePattern . '\/?$/';
     }
+
 
     // Dispatch the request to the appropriate controller and method
     public function dispatch(string $uri)

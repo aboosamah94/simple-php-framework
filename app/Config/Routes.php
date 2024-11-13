@@ -35,4 +35,5 @@ $router->post('/contact', 'Contact::submit'); // Example POST route
 
 
 $router->get('/users', 'User::index');
+$router->get('/users/{id}', 'User::show');
 

@@ -4,7 +4,7 @@
     <ul>
         <?php foreach ($users as $user): ?>
             <li>
-                <a href="/user/show/<?php echo $user['id']; ?>"><?php echo htmlspecialchars($user['name']); ?></a>
+                <a href="<?= base_url('users/') . $user['id']; ?>"><?php echo htmlspecialchars($user['name']); ?></a>
                 (<?php echo htmlspecialchars($user['email']); ?>)
             </li>
         <?php endforeach; ?>
