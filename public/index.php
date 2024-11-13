@@ -31,6 +31,7 @@ if ($appEnv === 'development') {
 // Define constants for paths
 define('BASE_PATH', __DIR__ . '/../');
 define('APP_PATH', BASE_PATH . 'app/');
+define('WRITE_PATH', BASE_PATH . 'writable/');
 define('PUBLIC_PATH', BASE_PATH . 'public/');
 
 // Helper function for base URL, similar to CodeIgniter's base_url()

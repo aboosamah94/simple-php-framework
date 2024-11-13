@@ -4,10 +4,12 @@ namespace App\Core;
 
 use App\Core\View;
 use App\Core\EmailService;
+use App\Core\Cache;
 
 class Controller
 {
     protected $emailService;
+    protected $cache;
     protected $helpers = [];
     protected $commonData = [];
 
@@ -16,6 +18,7 @@ class Controller
     {
         $this->loadHelpers();
         $this->emailService = new EmailService();
+        $this->cache = new Cache();
     }
 
     // Automatically load the helpers defined in the child controller

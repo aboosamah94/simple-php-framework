@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Toggle Button for Small Screens -->
+        <div class="sidebar-toggle">
+            &#9776; <!-- Hamburger Icon -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Documentation Menu</h2>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#get-method">GET Routes</a></li>
+                <li><a href="#post-method">POST Routes</a></li>
+                <li><a href="#put-method">PUT Routes</a></li>
+                <li><a href="#delete-method">DELETE Routes</a></li>
+                <li><a href="#patch-method">PATCH Routes</a></li>
+                <li><a href="#dynamic-routes">Dynamic Routes</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>Routes Documentation</h1>
+
+            <h2 id="overview">Overview</h2>
+            <p>This documentation covers the various types of HTTP routes supported by the application, including GET,
+                POST, PUT, DELETE, and PATCH routes. These routes are defined using the <code>Router</code> class and
+                can be mapped to specific controller methods for handling HTTP requests.</p>
+
+            <h2 id="get-method">GET Routes</h2>
+            <p>GET routes are typically used to retrieve data or display pages. Below is an example of how a GET route
+                is defined:</p>
+            <pre><code>$router->get('/route', 'Controller::method');</code></pre>
+            <p>Example: Displaying a list of posts:</p>
+            <pre><code>$router->get('/posts', 'Post::index');</code></pre>
+
+            <h2 id="post-method">POST Routes</h2>
+            <p>POST routes are used to submit data to the server, such as form submissions or creating new resources.
+                Example:</p>
+            <pre><code>$router->post('/contact', 'Contact::submit');</code></pre>
+            <p>Example: Submitting a contact form:</p>
+            <pre><code>$router->post('/contact', 'Contact::submit');</code></pre>
+
+            <h2 id="put-method">PUT Routes</h2>
+            <p>PUT routes are used to update existing data on the server. Example:</p>
+            <pre><code>$router->put('/post/{id}', 'Post::update');</code></pre>
+            <p>Example: Updating a specific post by ID:</p>
+            <pre><code>$router->put('/post/{id}', 'Post::update');</code></pre>
+
+            <h2 id="delete-method">DELETE Routes</h2>
+            <p>DELETE routes are used to delete resources from the server. Example:</p>
+            <pre><code>$router->delete('/post/{id}', 'Post::delete');</code></pre>
+            <p>Example: Deleting a specific post by ID:</p>
+            <pre><code>$router->delete('/post/{id}', 'Post::delete');</code></pre>
+
+            <h2 id="patch-method">PATCH Routes</h2>
+            <p>PATCH routes are used for partial updates to resources. Example:</p>
+            <pre><code>$router->patch('/post/{id}/title', 'Post::updateTitle');</code></pre>
+            <p>Example: Updating only the title of a post:</p>
+            <pre><code>$router->patch('/post/{id}/title', 'Post::updateTitle');</code></pre>
+
+            <h2 id="dynamic-routes">Dynamic Routes</h2>
+            <p>Routes can contain dynamic segments, such as IDs or slugs, that are captured and passed as parameters to
+                the controller method. Example:</p>
+            <pre><code>$router->get('/post/{id}/{slug}', 'Post::view');</code></pre>
+            <p>In this case, both <code>{id}</code> and <code>{slug}</code> are dynamic parameters that will be passed
+                to the controller's <code>view</code> method as arguments.</p>
+
+            <h2>Complete Routes List</h2>
+            <h3>Example Routes</h3>
+            <pre><code>
+$router->get('/', 'Home::index'); // Home page route
+$router->get('/about', 'Home::about'); // About page route
+$router->get('/send', 'EmailTest::sendContactEmail'); // Send contact email route
+
+$router->post('/contact', 'Contact::submit'); // Submit contact form
+
+$router->get('/users', 'User::index'); // List all users
+$router->get('/users/{id}', 'User::show'); // Show a specific user by ID
+            </code></pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>System Documentation | © 2024</p>
+    </footer>
+
+    <!-- Add Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelector('.sidebar-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.content').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

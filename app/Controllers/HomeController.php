@@ -3,9 +3,21 @@ namespace App\Controllers;
 
 class HomeController extends BaseController
 {
-    // This method handles the home page
     public function index()
     {
+
+        $cacheKey = 'home_index_data';
+        $data = $this->cache->get($cacheKey);
+
+        if ($data === false) {
+            $data = [
+                'title' => 'Home Page',
+                'username' => 'John Doe'
+            ];
+
+            $this->cache->save($cacheKey, $data, 600); // Cache for 10 minutes
+        }
+
         $data = [
             'title' => 'Home Page',
             'username' => 'John Doe'

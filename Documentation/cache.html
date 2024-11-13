@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache System Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Toggle Button for Small Screens -->
+        <div class="sidebar-toggle">
+            &#9776; <!-- Hamburger Icon -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Documentation Menu</h2>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#cache-class">Cache Class</a></li>
+                <li><a href="#using-cache">Using Cache in Controllers</a></li>
+                <li><a href="#cache-methods">Cache Methods</a></li>
+                <li><a href="#cache-expiration">Cache Expiration & Deletion</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>Cache System Documentation</h1>
+
+            <h2 id="overview">Overview</h2>
+            <p>The Cache system in this application helps store data temporarily in the file system to reduce redundant
+                data processing. By using caching, the system can quickly retrieve stored data instead of regenerating
+                it every time. This helps to improve the performance and reduce server load.</p>
+
+            <h2 id="cache-class">Cache Class</h2>
+            <p>The <code>Cache</code> class is responsible for managing caching operations, including storing,
+                retrieving, deleting, and clearing cached data. Cache settings, such as the storage path and default TTL
+                (Time-To-Live), are defined in the <code>CacheConfig</code> class.</p>
+
+            <h3>Cache Configuration</h3>
+            <p>The cache configuration is located in the <code>CacheConfig</code> class. Here is an example of how to
+                configure it:</p>
+            <pre><code>
+namespace App\Config;
+
+class Cache
+{
+    public string $storePath = WRITE_PATH . 'cache/';  // Default cache storage path
+    public int $ttl = 3600; // Default time-to-live for cache in seconds
+}
+            </code></pre>
+
+            <h2 id="using-cache">Using Cache in Controllers</h2>
+            <p>The Cache system is integrated into the <code>BaseController</code>. This means you can use caching in
+                any controller without manually instantiating the <code>Cache</code> class. Here's how to use it:</p>
+            <pre><code>
+namespace App\Controllers;
+
+use App\Core\Controller;
+
+class HomeController extends Controller
+{
+    public function index()
+    {
+        // Define a cache key
+        $cacheKey = 'home_page_data';
+
+        // Try to retrieve the cached data
+        $data = $this->cache->get($cacheKey);
+
+        // If the data is not in the cache (cache miss), set it up
+        if ($data === false) {
+            $data = [
+                'title' => 'Home Page',
+                'username' => 'John Doe'
+            ];
+
+            // Save the data in the cache for 10 minutes (600 seconds)
+            $this->cache->save($cacheKey, $data, 600);
+        }
+
+        // Return the view with cached or fresh data
+        return $this->view('home/index', $data);
+    }
+}
+            </code></pre>
+
+            <h2 id="cache-methods">Cache Methods</h2>
+            <p>The following methods are used for caching data:</p>
+            <ul>
+                <li><strong><code>get($key)</code></strong>: Retrieves cached data by key. Returns <code>false</code> if
+                    data does not exist or has expired.</li>
+                <li><strong><code>save($key, $data, $ttl)</code></strong>: Saves data in the cache for a specified TTL
+                    (in seconds). If TTL is not specified, the default TTL is used.</li>
+                <li><strong><code>delete($key)</code></strong>: Deletes the cached data by key.</li>
+                <li><strong><code>clear()</code></strong>: Clears all cached data.</li>
+            </ul>
+
+            <h3>Example Cache Methods</h3>
+            <pre><code>
+namespace App\Controllers;
+
+use App\Core\Controller;
+
+class ExampleController extends Controller
+{
+    public function exampleMethod()
+    {
+        // Cache key for a page's data
+        $cacheKey = 'example_data';
+
+        // Retrieve data from cache
+        $data = $this->cache->get($cacheKey);
+
+        if ($data === false) {
+            // If no cached data, generate data
+            $data = ['message' => 'This is a cached message!'];
+
+            // Save data in cache for 5 minutes
+            $this->cache->save($cacheKey, $data, 300);
+        }
+
+        // Return data
+        return $data;
+    }
+}
+            </code></pre>
+
+            <h2 id="cache-expiration">Cache Expiration & Deletion</h2>
+            <p>Cached data is stored with a Time-To-Live (TTL), after which it expires automatically. You can also
+                manually delete or clear cache items:</p>
+
+            <h3>Deleting Specific Cache</h3>
+            <p>To delete a specific cache item, use the <code>delete($key)</code> method:</p>
+            <pre><code>
+$this->cache->delete($cacheKey);
+            </code></pre>
+
+            <h3>Clearing All Cache</h3>
+            <p>To clear all cached data, use the <code>clear()</code> method:</p>
+            <pre><code>
+$this->cache->clear();
+            </code></pre>
+
+            <div class="note">
+                <strong>Note:</strong> Caching is most effective with data that doesn’t change frequently or that is
+                expensive to generate. Avoid caching highly dynamic or sensitive data.
+            </div>
+
+            <h2>Complete Example: Using Cache with Controller</h2>
+            <pre><code>
+namespace App\Controllers;
+
+use App\Core\Controller;
+
+class ProductController extends Controller
+{
+    public function show($id)
+    {
+        // Cache key with dynamic product ID
+        $cacheKey = 'product_' . $id;
+
+        // Try to retrieve the cached product data
+        $product = $this->cache->get($cacheKey);
+
+        // If cache miss, retrieve data from database
+        if ($product === false) {
+            // Simulating fetching from a database
+            $product = $this->getProductFromDatabase($id);
+
+            // Save product data in cache for 1 hour
+            $this->cache->save($cacheKey, $product, 3600);
+        }
+
+        // Return product data
+        return $this->view('product/show', ['product' => $product]);
+    }
+
+    private function getProductFromDatabase($id)
+    {
+        // Simulating database fetch
+        return [
+            'id' => $id,
+            'name' => 'Product Name',
+            'price' => 100,
+            'description' => 'Product Description',
+        ];
+    }
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>System Documentation | © 2024</p>
+    </footer>
+
+    <!-- Add Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.querySelector('.sidebar-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.content').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
