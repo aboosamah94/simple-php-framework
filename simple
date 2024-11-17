@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use App\Console\CommandRunner;
+
+// Instantiate and run the command runner
+$runner = new CommandRunner();
+$runner->run($argv);

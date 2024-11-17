@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple PHP Framework Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Toggle Button for Small Screens -->
+        <div class="sidebar-toggle">
+            &#9776; <!-- Hamburger Icon -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Documentation Menu</h2>
+            <ul>
+                <li><a href="#commands">Command Line Tools</a></li>
+                <li><a href="#create-command">Create Command</a></li>
+                <li><a href="#migrate-command">Migrate Command</a></li>
+                <li><a href="#seed-command">Seed Command</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+
+            <h2 id="commands">Command Line Tools</h2>
+            <p>The Simple PHP Framework includes command-line tools that can be run from the terminal to interact with
+                the application. Some of the key commands include:</p>
+
+            <h3 id="create-command">Create Command</h3>
+            <p>To run create, use the <code>php simple create</code> command:</p>
+            <pre><code>php simple create::controller test  // Create a new Controller "TestController"</code></pre>
+            <pre><code>php simple create::model test      // Create a new Model "Test"</code></pre>
+            <pre><code>php simple create::migration test // Create a new Migration "Test"</code></pre>
+            <pre><code>php simple create::seeder test    // Create a new Seeder "TestSeeder"</code></pre>
+
+            <h3 id="migrate-command">Migrate Command</h3>
+            <p>To run migrate, use the <code>php simple migrate</code> command:</p>
+
+            <pre><code>php simple migrate::up       // Run the 'up' migration to apply changes to the database</code></pre>
+            <pre><code>php simple migrate::down     // Run the 'down' migration to revert the last migration</code></pre>
+            <pre><code>php simple migrate::refresh  // Refresh the database (run down then up migrations)</code></pre>
+            <pre><code>php simple migrate::status   // Check the status of migrations (whether they have been run)</code></pre>
+
+            <h3 id="seed-command">Seed Command</h3>
+            <p>To run seed, use the <code>php simple seed</code> command:</p>
+
+            <pre><code>php simple seed::run    // Run the database seeder to populate the database with test data</code></pre>
+            <pre><code>php simple seed::reset  // Reset the seeders and reseed the database</code></pre>
+            <pre><code>php simple seed::refresh // Refresh the seeders, effectively re-running the reset and seeding process</code></pre>
+            <pre><code>php simple seed::status  // Check the status of the seeders</code></pre>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Simple PHP Framework Documentation | © 2024</p>
+    </footer>
+
+    <!-- Add Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelector('.sidebar-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.content').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
