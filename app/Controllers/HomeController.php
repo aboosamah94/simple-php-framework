@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 class HomeController extends BaseController
@@ -29,6 +30,11 @@ class HomeController extends BaseController
     // This method handles the about page
     public function about()
     {
-        echo "This is the About Page.";
+        $data = [
+            'title' => 'About Page',
+            'username' => 'John Doe'
+        ];
+        
+        return $this->view('home/about', $data);
     }
 }

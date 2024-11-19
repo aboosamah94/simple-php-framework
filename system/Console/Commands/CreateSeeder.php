@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Console\Commands;
-use App\Console\CommandInterface;
+namespace System\Console\Commands;
+use System\Console\CommandInterface;
 
 class CreateSeeder implements CommandInterface
 {
@@ -20,7 +20,7 @@ class CreateSeeder implements CommandInterface
             return;
         }
 
-        $seederTemplate = "<?php\n\nnamespace App\Database\Seeders;\n\nclass {$seederName}\n{\n    public function run()\n    {\n        // Add your seeding logic here\n    }\n}\n";
+        $seederTemplate = "<?php\n\nnamespace App\Database\Seeders;\nuse App\Core\Seeder;\n\nclass {$seederName} extends Seeder\n{\n    public function run()\n    {\n        // Add your seeding logic here\n    }\n}\n";
 
         file_put_contents($filePath, $seederTemplate);
         echo "Seeder {$seederName} created.\n";

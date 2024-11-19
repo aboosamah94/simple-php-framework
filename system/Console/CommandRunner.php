@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace System\Console;
 
 class CommandRunner
 {
@@ -68,16 +68,16 @@ class CommandRunner
 
     private function handleMigrateCommand($subcommand, $params)
     {
-        // Mapping migrate subcommands (up, down, refresh, etc.)
         $class = "App\\Console\\Commands\\Migrate" . ucfirst(strtolower($subcommand));
 
         if (class_exists($class)) {
             $instance = new $class();
-            $instance->execute($subcommand, $params);
+            $instance->execute($params);
         } else {
             echo "Migrate command not found: {$subcommand}\n";
         }
     }
+
 
     private function handleSeedCommand($subcommand, $params)
     {

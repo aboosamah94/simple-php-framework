@@ -15,6 +15,7 @@ class ComposerStaticInit0bf7dcb2391e3b1c452acd933e6e8828
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'System\\' => 7,
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -39,6 +40,10 @@ class ComposerStaticInit0bf7dcb2391e3b1c452acd933e6e8828
     );
 
     public static $prefixDirsPsr4 = array (
+        'System\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/system',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -76,26 +81,14 @@ class ComposerStaticInit0bf7dcb2391e3b1c452acd933e6e8828
     public static $classMap = array (
         'App\\Config\\App' => __DIR__ . '/../..' . '/app/Config/App.php',
         'App\\Config\\Cache' => __DIR__ . '/../..' . '/app/Config/Cache.php',
-        'App\\Console\\CommandInterface' => __DIR__ . '/../..' . '/app/Console/CommandInterface.php',
-        'App\\Console\\CommandRunner' => __DIR__ . '/../..' . '/app/Console/CommandRunner.php',
-        'App\\Console\\Commands\\CreateController' => __DIR__ . '/../..' . '/app/Console/Commands/CreateController.php',
-        'App\\Console\\Commands\\CreateMigration' => __DIR__ . '/../..' . '/app/Console/Commands/CreateMigration.php',
-        'App\\Console\\Commands\\CreateModel' => __DIR__ . '/../..' . '/app/Console/Commands/CreateModel.php',
-        'App\\Console\\Commands\\CreateSeeder' => __DIR__ . '/../..' . '/app/Console/Commands/CreateSeeder.php',
+        'App\\Config\\Filters' => __DIR__ . '/../..' . '/app/Config/Filters.php',
+        'App\\Config\\Paths' => __DIR__ . '/../..' . '/app/Config/Paths.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/Controllers/BaseController.php',
         'App\\Controllers\\EmailTestController' => __DIR__ . '/../..' . '/app/Controllers/EmailTestController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Controllers/HomeController.php',
         'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Controllers/UserController.php',
-        'App\\Core\\Cache' => __DIR__ . '/../..' . '/app/Core/Cache.php',
-        'App\\Core\\Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
-        'App\\Core\\Database' => __DIR__ . '/../..' . '/app/Core/Database.php',
-        'App\\Core\\EmailService' => __DIR__ . '/../..' . '/app/Core/EmailService.php',
-        'App\\Core\\Env' => __DIR__ . '/../..' . '/app/Core/Env.php',
-        'App\\Core\\Migration' => __DIR__ . '/../..' . '/app/Core/Migration.php',
-        'App\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',
-        'App\\Core\\Router' => __DIR__ . '/../..' . '/app/Core/Router.php',
-        'App\\Core\\Security' => __DIR__ . '/../..' . '/app/Core/Security.php',
-        'App\\Core\\View' => __DIR__ . '/../..' . '/app/Core/View.php',
+        'App\\Filters\\CSRF' => __DIR__ . '/../..' . '/app/Filters/CSRF.php',
+        'App\\Libraries\\CSRF' => __DIR__ . '/../..' . '/app/Libraries/CSRF.php',
         'App\\Models\\UsersModel' => __DIR__ . '/../..' . '/app/Models/UsersModel.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -160,6 +153,21 @@ class ComposerStaticInit0bf7dcb2391e3b1c452acd933e6e8828
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
+        'System\\Application' => __DIR__ . '/../..' . '/system/Application.php',
+        'System\\Console\\CommandInterface' => __DIR__ . '/../..' . '/system/Console/CommandInterface.php',
+        'System\\Console\\CommandRunner' => __DIR__ . '/../..' . '/system/Console/CommandRunner.php',
+        'System\\Console\\Commands\\CreateController' => __DIR__ . '/../..' . '/system/Console/Commands/CreateController.php',
+        'System\\Console\\Commands\\CreateMigration' => __DIR__ . '/../..' . '/system/Console/Commands/CreateMigration.php',
+        'System\\Console\\Commands\\CreateModel' => __DIR__ . '/../..' . '/system/Console/Commands/CreateModel.php',
+        'System\\Console\\Commands\\CreateSeeder' => __DIR__ . '/../..' . '/system/Console/Commands/CreateSeeder.php',
+        'System\\Core\\Cache' => __DIR__ . '/../..' . '/system/Core/Cache.php',
+        'System\\Core\\Controller' => __DIR__ . '/../..' . '/system/Core/Controller.php',
+        'System\\Core\\Database' => __DIR__ . '/../..' . '/system/Core/Database.php',
+        'System\\Core\\EmailService' => __DIR__ . '/../..' . '/system/Core/EmailService.php',
+        'System\\Core\\Env' => __DIR__ . '/../..' . '/system/Core/Env.php',
+        'System\\Core\\Model' => __DIR__ . '/../..' . '/system/Core/Model.php',
+        'System\\Core\\Router' => __DIR__ . '/../..' . '/system/Core/Router.php',
+        'System\\Core\\View' => __DIR__ . '/../..' . '/system/Core/View.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );

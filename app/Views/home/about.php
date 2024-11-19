@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +13,9 @@
 </head>
 
 <body>
-    <h1>About Us</h1>
-    <p>This page contains information about our website.</p>
+    <h1>Welcome to the About Page!</h1>
+    <p><?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : ''; ?></p>
+    <a href="<?= base_url(''); ?>">asd</a>
 </body>
 
 </html>

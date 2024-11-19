@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace System\Console;
 
 interface CommandInterface
 {

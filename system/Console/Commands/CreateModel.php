@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Console\Commands;
-use App\Console\CommandInterface;
+namespace System\Console\Commands;
+use System\Console\CommandInterface;
 
 class CreateModel implements CommandInterface
 {
